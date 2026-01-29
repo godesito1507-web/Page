@@ -3,369 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitación de Cumpleaños</title>
+    <title>Girasol 3D Giratorio</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: #f0f;
-            position: absolute;
-            animation: confetti-fall 3s linear infinite;
-        }
-
-        @keyframes confetti-fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-            }
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            animation: fadeInDown 1s ease;
-        }
-
-        .header h1 {
-            color: white;
-            font-size: 3em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 10px;
-        }
-
-        .balloons {
+            background-color: #87CEEB; /* Cielo */
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .balloon {
-            width: 60px;
-            height: 80px;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            position: relative;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .balloon:nth-child(1) {
-            background: #ff6b6b;
-            animation-delay: 0s;
-        }
-
-        .balloon:nth-child(2) {
-            background: #4ecdc4;
-            animation-delay: 0.3s;
-        }
-
-        .balloon:nth-child(3) {
-            background: #ffe66d;
-            animation-delay: 0.6s;
-        }
-
-        .balloon:nth-child(4) {
-            background: #a8e6cf;
-            animation-delay: 0.9s;
-        }
-
-        .balloon::after {
-            content: '';
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            width: 2px;
-            height: 30px;
-            background: rgba(255,255,255,0.5);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: fadeInUp 1s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .photo-container {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 5px solid #667eea;
-            object-fit: cover;
-            animation: glow 2s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(102, 126, 234, 0.8);
-            }
-        }
-
-        .invitado {
-            text-align: center;
-            font-size: 1.5em;
-            color: #667eea;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .titulo {
-            text-align: center;
-            font-size: 2.5em;
-            color: #764ba2;
-            margin-bottom: 30px;
-            font-weight: bold;
-        }
-
-        .detalles {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-        }
-
-        .detalle-item {
-            display: flex;
             align-items: center;
-            margin-bottom: 20px;
-            font-size: 1.1em;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            perspective: 1000px;
         }
 
-        .detalle-item:last-child {
-            margin-bottom: 0;
+        /* Contenedor principal para la rotación */
+        .escena {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: girar 8s linear infinite;
         }
 
-        .icon {
-            font-size: 1.5em;
-            margin-right: 15px;
-            min-width: 30px;
+        @keyframes girar {
+            from { transform: rotateY(0deg) rotateX(-10deg); }
+            to { transform: rotateY(360deg) rotateX(-10deg); }
         }
 
-        .mensaje {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            font-size: 1.1em;
-            font-style: italic;
-            color: #333;
-            margin-bottom: 30px;
+        /* Centro de la flor (semillas) */
+        .centro {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #5d4037, #3e2723);
+            border-radius: 50%;
+            top: 110px;
+            left: 110px;
+            transform: translateZ(20px);
+            box-shadow: inset 0 0 15px #000;
         }
 
-        /* Estilos para el iframe de Google Forms */
-        .form-container {
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 3px dashed #667eea;
-        }
-
-        .form-title {
-            text-align: center;
-            font-size: 2em;
-            color: #764ba2;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .form-subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-        }
-
-        .google-form {
+        /* Contenedor de pétalos */
+        .petalos {
+            position: absolute;
             width: 100%;
-            height: 800px;
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 100%;
+            transform-style: preserve-3d;
         }
 
-        .form-note {
-            text-align: center;
-            color: #666;
-            margin-top: 20px;
-            font-size: 0.9em;
-            font-style: italic;
+        .petalo {
+            position: absolute;
+            width: 40px;
+            height: 100px;
+            background: #FFD600;
+            border-radius: 50% 50% 20% 20%;
+            left: 130px;
+            top: 50px;
+            transform-origin: bottom center;
+            border: 1px solid #FBC02D;
         }
 
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
-            }
-
-            .titulo {
-                font-size: 1.8em;
-            }
-
-            .card {
-                padding: 25px;
-            }
-
-            .balloon {
-                width: 40px;
-                height: 55px;
-            }
-
-            .google-form {
-                height: 900px;
-            }
+        /* Tallo */
+        .tallo {
+            position: absolute;
+            width: 15px;
+            height: 300px;
+            background: #2E7D32;
+            left: 142px;
+            top: 190px;
+            transform: translateZ(-10px);
         }
+
+        /* Generar pétalos en círculo usando un bucle lógico conceptual */
+        /* Para no escribir 24 divs, usamos este truco de CSS */
+        .petalo:nth-child(1)  { transform: rotate(0deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(2)  { transform: rotate(20deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(3)  { transform: rotate(40deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(4)  { transform: rotate(60deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(5)  { transform: rotate(80deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(6)  { transform: rotate(100deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(7)  { transform: rotate(120deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(8)  { transform: rotate(140deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(9)  { transform: rotate(160deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(10) { transform: rotate(180deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(11) { transform: rotate(200deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(12) { transform: rotate(220deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(13) { transform: rotate(240deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(14) { transform: rotate(260deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(15) { transform: rotate(280deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(16) { transform: rotate(300deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(17) { transform: rotate(320deg) translateY(-20px) rotateX(20deg); }
+        .petalo:nth-child(18) { transform: rotate(340deg) translateY(-20px) rotateX(20deg); }
+
     </style>
 </head>
 <body>
-    <!-- Confetti -->
-    <script>
-        for(let i = 0; i < 50; i++) {
-            let confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.left = Math.random() * 100 + '%';
-            confetti.style.animationDelay = Math.random() * 3 + 's';
-            confetti.style.background = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#a8e6cf', '#ff8787'][Math.floor(Math.random() * 5)];
-            document.body.appendChild(confetti);
-        }
-    </script>
 
-    <div class="container">
-        <div class="header">
-            <h1>🎉 ¡Estás Invitado! 🎉</h1>
-            <div class="balloons">
-                <div class="balloon"></div>
-                <div class="balloon"></div>
-                <div class="balloon"></div>
-                <div class="balloon"></div>
-            </div>
+    <div class="escena">
+        <div class="tallo"></div>
+        <div class="petalos">
+            <div class="petalo"></div><div class="petalo"></div>
+            <div class="petalo"></div><div class="petalo"></div>
+            <div class="petalo"></div><div class="petalo"></div>
+            <div class="petalo"></div><div class="petalo"></div>
+            <div class="petalo"></div><div class="petalo"></div>
+            <div class="petalo"></div><div class="petalo"></div>
+            <div class="petalo"></div><div class="petalo"></div>
+            <div class="petalo"></div><div class="petalo"></div>
+            <div class="petalo"></div><div class="petalo"></div>
         </div>
-
-        <div class="card">
-            <div class="photo-container">
-               <img src="perrito.jpg" alt="Foto del Cumpleañero" class="photo">
-             </div>
-
-            <div class="invitado">
-                ¡María García!
-            </div>
-
-            <div class="titulo">
-                Los 25 años de Ana López
-            </div>
-
-            <div class="detalles">
-                <div class="detalle-item">
-                    <span class="icon">📅</span>
-                    <div>
-                        <strong>Fecha:</strong> Sábado 15 de Febrero, 2025
-                    </div>
-                </div>
-
-                <div class="detalle-item">
-                    <span class="icon">🕕</span>
-                    <div>
-                        <strong>Hora:</strong> 6:00 PM
-                    </div>
-                </div>
-
-                <div class="detalle-item">
-                    <span class="icon">📍</span>
-                    <div>
-                        <strong>Lugar:</strong> Salón de Eventos "La Fiesta"
-                    </div>
-                </div>
-
-                <div class="detalle-item">
-                    <span class="icon">🗺️</span>
-                    <div>
-                        <strong>Dirección:</strong> Av. Principal #123, Centro
-                    </div>
-                </div>
-            </div>
-
-            <div class="mensaje">
-                "Me encantaría compartir este día tan especial contigo. ¡Tu presencia hará que esta celebración sea aún más inolvidable! 💕"
-            </div>
-
-            <!-- FORMULARIO DE GOOGLE FORMS -->
-            <div class="form-container">
-                <h2 class="form-title">✅ Confirma tu Asistencia</h2>
-                <p class="form-subtitle">Por favor, completa el siguiente formulario para confirmar si podrás acompañarnos</p>
-                
-                <!-- 
-                    🔧 AQUÍ DEBES PONER TU ENLACE DE GOOGLE FORMS
-                    
-                    Reemplaza la URL que está en src="..." con tu enlace de Google Forms
-                    (El enlace que copiaste en el Paso 2)
-                -->
-                <iframe 
-                    class="google-form"
-                    src="https://docs.google.com/forms/d/e/1FAIpQLScpqJpnrbuIGFeo0117TpSronzbRZL5k1xSvbxzj6MwWPoolQ/viewform?usp=preview"
-                    frameborder="0" 
-                    marginheight="0" 
-                    marginwidth="0">
-                    Cargando…
-                </iframe>
-
-                <p class="form-note">
-                    💌 Tu respuesta es muy importante para nosotros. Gracias por confirmar.
-                </p>
-            </div>
-        </div>
+        <div class="centro"></div>
     </div>
+
 </body>
-</html>    
+</html>
